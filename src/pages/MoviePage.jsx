@@ -113,6 +113,7 @@ const Movie = () => {
               alt={movie.title}
               className="w-2/6 rounded mb-4 pl-10"
             />
+
             <div className="text-lg p-10">
               <p>{movie.summary}</p>
               <p>
@@ -133,12 +134,32 @@ const Movie = () => {
               </p>
             </div>
           </div>
-          <div className="ml-10">
-            <button className="pr-1" onClick={handleWish}>
-              {wishTable.includes(movie.title) ? "Wishlisted" : "Wishlist"}
+          <div className="ml-8 w-fit">
+            <button className="pr-1 mx-1" onClick={handleWish}>
+              {wishTable.includes(movie.title) ? (
+                <div className="flex items-center">
+                  <i className="bi bi-plus-square-fill p-1"></i>
+                  <p className="ml-1">Added</p>
+                </div>
+              ) : (
+                <div className="flex items-center">
+                  <i className="bi bi-plus-square p-1"></i>
+                  <p className="ml-1">Wishlist</p>
+                </div>
+              )}
             </button>
-            <button className="pl-1" onClick={handleLike}>
-              {likeTable.includes(movie.title) ? "Liked" : "Like"}
+            <button className="pl-1 mx-1" onClick={handleLike}>
+              {likeTable.includes(movie.title) ? (
+                <div className="flex items-center">
+                  <i className="bi bi-heart-fill p-1"></i>
+                  <p className="ml-1">Liked</p>
+                </div>
+              ) : (
+                <div className="flex items-center">
+                  <i className="bi bi-heart p-1"></i>
+                  <p className="ml-1">Like</p>
+                </div>
+              )}
             </button>
           </div>
           <br />

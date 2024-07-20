@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-red-300 p-4 w-screen relative">
+    <nav className="bg-red-300 p-4 w-full relative">
       <div className="container mx-auto flex justify-between items-center w-full">
         <div className="flex-shrink-0">
           <a href="/" className="text-black text-2xl font-bold">

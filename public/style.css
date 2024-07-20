@@ -1,0 +1,11 @@
+::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: blueviolet;
+}

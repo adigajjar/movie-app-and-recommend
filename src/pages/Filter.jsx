@@ -10,6 +10,8 @@ const Filter = () => {
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
   let currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
   const [sortedMovies, setSortedMovies] = useState(false);
+  const [sortOrder, setSortOrder] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
   const totalPages = Math.ceil(movies.length / moviesPerPage);
 
   const handlePrevPage = () => {
@@ -20,13 +22,17 @@ const Filter = () => {
     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
   };
   const handleFilter = () => {
-    sortedMovies === false ? setSortedMovies(true) : setSortedMovies(false);
+    setShowDropdown(!showDropdown);
   };
-  if (sortedMovies) {
+  const handleSort = (order) => {
+    setSortOrder(order);
+    setShowDropdown(false);
+  };
+  if (sortOrder === "asc") {
     currentMovies = currentMovies.sort((a, b) =>
       a.title.toString().localeCompare(b.title.toString())
     );
-  } else {
+  } else if (sortOrder === "desc") {
     currentMovies = currentMovies.sort((a, b) =>
       b.title.toString().localeCompare(a.title.toString())
     );
@@ -37,6 +43,25 @@ const Filter = () => {
         <button className="bg-red-200 rounded p-2 w-1/6" onClick={handleFilter}>
           Filter
         </button>
+        <div className="mt-10 flex justify-center items-center">
+          {showDropdown && (
+            <div className="absolute bg-white shadow-md rounded mt-2 w-1/6">
+              <button
+                className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-center"
+                onClick={() => handleSort("asc")}
+              >
+                A-Z
+              </button>
+              <button
+                className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-center"
+                onClick={() => handleSort("desc")}
+              >
+                Z-A
+              </button>
+            </div>
+          )}
+        </div>
+
         <br />
         {currentMovies.map((movie) => (
           <div key={movie._id.$oid} className="w-2/4">
